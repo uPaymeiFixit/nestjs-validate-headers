@@ -1,0 +1,28 @@
+{
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.formatOnPaste": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.format.enable": false,
+  "javascript.format.enable": false,
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "eslint.validate": [
+    "typescript",
+    "javascript",
+    "typescriptreact",
+    "javascriptreact",
+    "json",
+    "jsonc"
+  ],
+  "files.exclude": {
+    "**/dist/": true,
+    "**/coverage/": true
+  },
+  "cSpell.words": [
+    "esbuild",
+    "eslintcache",
+    "esmodule",
+    "Paramtypes",
+    "prettiercache"
+  ]
+}

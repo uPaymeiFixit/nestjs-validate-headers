@@ -1,0 +1,10 @@
+# Check ESLint Standards
+npm run lint ||
+(
+  echo '🚨 ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
+  echo 'For more details run `npm run lint`. To attempt to automatically fix these errors, run `npm run lint:fix`.';
+  false;
+)
+
+# If everything passes... Now we can commit
+echo '✅ Husky passed without any errors.'

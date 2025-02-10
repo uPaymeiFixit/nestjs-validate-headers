@@ -1,0 +1,63 @@
+{
+  "name": "nestjs-validate-headers",
+  "version": "0.1.0",
+  "description": "A decorator meant to replace NestJS's @Headers()",
+  "repository": {
+    "type": "git",
+    "url": "TODO"
+  },
+  "license": "UNLICENSED",
+  "maintainers": [
+    {
+      "name": "Josh Gibbs",
+      "email": "josh@gibbs.tk"
+    }
+  ],
+  "type": "commonjs",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "files": [
+    "/src/",
+    "/dist/"
+  ],
+  "scripts": {
+    "build": "concurrently --raw --group 'npm:build:*'",
+    "build:js": "esbuild --tsconfig=tsconfig.build.json $(glob 'src/**/*.?(c|m)[jt]s' --ignore '**/*.@(spec|test).*') --outdir=dist --sourcemap=inline --platform=node --target=node18 --format=cjs",
+    "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
+    "check": "concurrently --raw --group 'npm:test' 'npm:lint'",
+    "cz": "git-cz",
+    "lint": "concurrently --raw --group 'npm:lint:*'",
+    "lint:fix": "eslint . --fix",
+    "lint:js": "eslint . --ext ts,json --cache",
+    "lint:types": "tsc --noEmit --pretty",
+    "prepare": "husky",
+    "prepublishOnly": "npm run build",
+    "test": "echo 'No tests!'"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.0.6"
+  },
+  "devDependencies": {
+    "@code-style/code-style": "^2.0.0-32",
+    "@code-style/eslint-config": "^2.0.0-32",
+    "@code-style/eslint-config-esmodule": "^2.0.0-32",
+    "@code-style/eslint-config-node": "^2.0.0-32",
+    "@code-style/eslint-config-typescript": "^2.0.0-32",
+    "@code-style/typescript-configs": "^2.0.0-32",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.12.0",
+    "concurrently": "^9.1.2",
+    "esbuild": "^0.24.2",
+    "express": "^4.21.2",
+    "glob": "^11.0.1",
+    "husky": "^9.1.7",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": "^18 || ^20 || ^22"
+  },
+  "publishConfig": {
+    "access": "restricted",
+    "provenance": true
+  }
+}
