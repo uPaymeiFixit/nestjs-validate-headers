@@ -1,10 +1,10 @@
 {
   "name": "nestjs-validate-headers",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A decorator meant to replace NestJS's @Headers()",
   "repository": {
     "type": "git",
-    "url": "git+ssh@github.com:uPaymeiFixit/nestjs-validate-headers.git"
+    "url": "git+ssh://git@github.com/uPaymeiFixit/nestjs-validate-headers.git"
   },
   "license": "MIT",
   "maintainers": [
