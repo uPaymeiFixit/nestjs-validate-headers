@@ -1,67 +1,21 @@
-name: 'Publish NPM Package'
-
+name: Publish Package to npmjs
 on:
-  push:
-    branches: ['*']
-    tags-ignore: ['*']
-  pull_request:
-
-permissions:
-  contents: 'read'
-
+  release:
+    types: [published]
 jobs:
   build:
-    runs-on: 'ubuntu-latest'
-    steps:
-      - name: 'Setup node 🛎️'
-        uses: 'dudeofawesome/actions/node-setup@v1'
-      - name: 'Build 🏗️'
-        run: 'npm run build'
-
-  lint:
-    runs-on: 'ubuntu-latest'
-    steps:
-      - name: 'Setup node 🛎️'
-        uses: 'dudeofawesome/actions/node-setup@v1'
-      - name: 'Lint 🧪'
-        run: 'npm run lint'
-
-  test:
-    runs-on: 'ubuntu-latest'
-    steps:
-      - name: 'Setup node 🛎️'
-        uses: 'dudeofawesome/actions/node-setup@v1'
-      - name: 'Test 🧪'
-        run: 'npm run test'
-
-  publish:
-    runs-on: 'ubuntu-latest'
-    environment: 'production'
+    runs-on: ubuntu-latest
     permissions:
-      id-token: 'write'
-      packages: 'write'
-      contents: 'write'
-    needs:
-      - 'build'
-      - 'lint'
-      - 'test'
+      contents: read
+      id-token: write
     steps:
-      - name: 'Setup node 🛎️'
-        uses: 'dudeofawesome/actions/node-setup@v1'
+      - uses: actions/checkout@v4
+      # Setup .npmrc file to publish to npm
+      - uses: actions/setup-node@v4
         with:
-          install-modules: false
-
-      - name: 'Publish to NPM 🚀'
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      - run: npm publish --provenance --access public
         env:
-          NODE_AUTH_TOKEN: '${{ secrets.NPM_AUTH_TOKEN }}'
-        uses: 'dudeofawesome/actions/npm-publish@v1'
-
-      - name: 'Get package version 🔖'
-        id: 'get-package-version'
-        run: 'echo "version=v$(npm pkg get version | jq --raw-output)" >> "$GITHUB_OUTPUT"'
-      - name: 'Publish files to Github Releases 🚀'
-        uses: 'softprops/action-gh-release@v2'
-        with:
-          tag_name: '${{ steps.get-package-version.outputs.version }}'
-          prerelease: "${{ contains(steps.get-package-version.outputs.version, '-') }}"
-          generate_release_notes: true
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
