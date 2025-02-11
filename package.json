@@ -1,12 +1,12 @@
 {
   "name": "nestjs-validate-headers",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A decorator meant to replace NestJS's @Headers()",
   "repository": {
     "type": "git",
-    "url": "TODO"
+    "url": "git+ssh@github.com:uPaymeiFixit/nestjs-validate-headers.git"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "maintainers": [
     {
       "name": "Josh Gibbs",
@@ -57,7 +57,7 @@
     "node": "^18 || ^20 || ^22"
   },
   "publishConfig": {
-    "access": "restricted",
+    "access": "public",
     "provenance": true
   }
 }
