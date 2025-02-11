@@ -19,10 +19,12 @@
     "**/coverage/": true
   },
   "cSpell.words": [
+    "codestylerc",
     "esbuild",
     "eslintcache",
     "esmodule",
     "Paramtypes",
-    "prettiercache"
+    "prettiercache",
+    "softprops"
   ]
 }

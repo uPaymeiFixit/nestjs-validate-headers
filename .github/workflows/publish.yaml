@@ -1,0 +1,67 @@
+name: 'Publish NPM Package'
+
+on:
+  push:
+    branches: ['*']
+    tags-ignore: ['*']
+  pull_request:
+
+permissions:
+  contents: 'read'
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'Setup node 🛎️'
+        uses: 'dudeofawesome/actions/node-setup@v1'
+      - name: 'Build 🏗️'
+        run: 'npm run build'
+
+  lint:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'Setup node 🛎️'
+        uses: 'dudeofawesome/actions/node-setup@v1'
+      - name: 'Lint 🧪'
+        run: 'npm run lint'
+
+  test:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'Setup node 🛎️'
+        uses: 'dudeofawesome/actions/node-setup@v1'
+      - name: 'Test 🧪'
+        run: 'npm run test'
+
+  publish:
+    runs-on: 'ubuntu-latest'
+    environment: 'production'
+    permissions:
+      id-token: 'write'
+      packages: 'write'
+      contents: 'write'
+    needs:
+      - 'build'
+      - 'lint'
+      - 'test'
+    steps:
+      - name: 'Setup node 🛎️'
+        uses: 'dudeofawesome/actions/node-setup@v1'
+        with:
+          install-modules: false
+
+      - name: 'Publish to NPM 🚀'
+        env:
+          NODE_AUTH_TOKEN: '${{ secrets.NPM_AUTH_TOKEN }}'
+        uses: 'dudeofawesome/actions/npm-publish@v1'
+
+      - name: 'Get package version 🔖'
+        id: 'get-package-version'
+        run: 'echo "version=v$(npm pkg get version | jq --raw-output)" >> "$GITHUB_OUTPUT"'
+      - name: 'Publish files to Github Releases 🚀'
+        uses: 'softprops/action-gh-release@v2'
+        with:
+          tag_name: '${{ steps.get-package-version.outputs.version }}'
+          prerelease: "${{ contains(steps.get-package-version.outputs.version, '-') }}"
+          generate_release_notes: true

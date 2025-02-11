@@ -39,7 +39,7 @@ async function bootstrap() {
 bootstrap();
 ```
 
-#### `*.controller.ts`
+#### `app.controller.ts`
 
 ```typescript
 import { Controller, Get, ValidationPipe } from '@nestjs/common';
