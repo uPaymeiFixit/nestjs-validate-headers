@@ -11,6 +11,6 @@ output_dir: dist
 technologies:
   - vs-code
   - esm
-library: false
+library: true
 lenient: false
 overwrite: true

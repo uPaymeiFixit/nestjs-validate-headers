@@ -1,6 +1,6 @@
 # @ValidateHeaders()
 
-By default, NestJS's `Headers` decorator skips validation. This package exports a custom `ValidateHeaders` decorator which behaves the same as NestJS's `Headers` but also performs validation.
+NestJS's `Headers` decorator skips validation. This package exports a custom `ValidateHeaders` decorator which behaves the same as NestJS's `Headers` but also performs validation.
 
 ## Installation
 
@@ -10,7 +10,7 @@ $ npm install nestjs-validate-headers`
 
 ## Setup
 
-To enable validation in this decorator, you must add a global pipe to your NestJS app with validateCustomDecorators set to true. Typically this is inside your main.ts's bootstrap function. Add this to enable validation globally.
+To enable validation in this decorator, you must add a global pipe to your NestJS app with `validateCustomDecorators` set to true. Typically this is inside your main.ts's bootstrap function. Add this to enable validation globally.
 
 ```typescript
 // main.ts -> bootstrap
