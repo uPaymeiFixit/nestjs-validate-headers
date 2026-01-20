@@ -54,7 +54,7 @@
     "@nestjs/common": "^11"
   },
   "engines": {
-    "node": "^18 || ^20 || ^22 || ^24"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public",
