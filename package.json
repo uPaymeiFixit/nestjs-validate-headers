@@ -1,6 +1,6 @@
 {
   "name": "nestjs-validate-headers",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A decorator meant to replace NestJS's @Headers()",
   "repository": {
     "type": "git",
